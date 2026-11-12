@@ -1,0 +1,125 @@
+# Contribuindo com o CoffeeCode 8.5
+
+Obrigado pelo interesse em contribuir! Este documento descreve as diretrizes para enviar contribuições ao projeto.
+
+## Como Contribuir
+
+### Reportando Bugs
+
+1. Verifique se o bug já foi reportado nas [Issues](https://github.com/yourusername/coffeecode/issues)
+2. Se não encontrado, abra uma nova issue com:
+   - Descrição clara do problema
+   - Passos para reproduzir
+   - Versão do PHP (`php -v`)
+   - Componente afetado (DataLayer, Router, Uploader, etc.)
+   - Stack trace completo (se aplicável)
+
+### Sugerindo Melhorias
+
+1. Abra uma issue com o label `enhancement`
+2. Descreva o caso de uso e o benefício esperado
+3. Se possível, inclua exemplos de código desejado
+
+### Enviando Pull Requests
+
+1. Fork o repositório
+2. Crie uma branch a partir de `main`:
+   ```bash
+   git checkout -b feat/nome-do-recurso
+   # ou
+   git checkout -b fix/descricao-do-bugfix
+   ```
+3. Implemente suas mudanças seguindo as convenções abaixo
+4. Adicione testes para novos recursos ou correções
+5. Execute a suíte completa antes de submeter:
+   ```bash
+   composer test
+   composer analyse
+   ```
+6. Commit com mensagem descritiva (Conventional Commits):
+   ```bash
+   git commit -m "feat(router): adicionar suporte a atributos #[Route]"
+   git commit -m "fix(uploader): corrigir validação MIME para SVGs"
+   git commit -m "docs(datalayer): atualizar exemplos de QueryBuilder"
+   ```
+7. Push e abra o Pull Request
+
+## Convenções de Código
+
+### PHP
+
+- **PHP 8.5+** obrigatório — use recursos modernos da linguagem
+- `declare(strict_types=1)` no topo de todos os arquivos
+- Tipagem estrita em parâmetros, retornos e propriedades
+- Enums backed preferidos sobre constantes string/int
+- Readonly classes para value objects imutáveis
+- Named arguments em APIs públicas
+- Match expressions em vez de switch/if-elseif longos
+- PHPDoc completo em métodos públicos e protegidos
+- Sem anotações JetBrains — use PHPDoc padrão
+
+### Nomenclatura
+
+| Elemento | Convenção | Exemplo |
+|---|---|---|
+| Classes | PascalCase | `QueryBuilder`, `FileValidator` |
+| Métodos | camelCase | `validateMime()`, `buildSrcset()` |
+| Propriedades | camelCase | `$cachePath`, `$allowedMimes` |
+| Constantes | UPPER_SNAKE | `METHOD_NOT_ALLOWED` |
+| Enums | PascalCase | `HttpMethod`, `MimeType` |
+| Namespaces | PascalCase | `CoffeeCode\DataLayer` |
+| Arquivos | PascalCase (mesmo nome da classe) | `QueryBuilder.php` |
+| Traits | PascalCase com prefixo Has/Use | `HasAttributes`, `SoftDeletes` |
+
+### Testes
+
+- Um arquivo de teste por classe/recurso: `{ClassName}Test.php`
+- Métodos: `test{DescriçãoDoComportamento}` em camelCase
+- Use AAA pattern (Arrange-Act-Assert)
+- Cubra cenários positivos E negativos
+- Testes devem ser independentes e isolados
+- Arquivos temporários em `sys_get_temp_dir()`, limpos no `tearDown()`
+
+### Documentação
+
+- Markdown com formatação consistente
+- Exemplos de código executáveis e completos
+- Tabelas para comparações e referências rápidas
+- Links cruzados entre documentos relacionados
+
+## Estrutura do Projeto
+
+```
+src/
+├── DataLayer/      # Persistência e QueryBuilder
+├── Router/         # Roteamento MVC + Middleware/
+├── Uploader/       # Upload seguro de arquivos
+├── Cropper/        # Processamento de imagens
+├── Optimizer/      # SEO, Schema.org, Sitemap
+├── Paginator/      # Paginação offset e cursor
+├── Validator/      # Validação declarativa
+├── ImageEngine.php # Enum GD/Imagick
+└── ImageProcessor.php # Trait compartilhado
+
+tests/              # Espelha estrutura de src/
+docs/               # Documentação numerada (01-10)
+```
+
+## Processo de Review
+
+1. Todos os PRs requerem revisão antes do merge
+2. CI deve passar (testes + análise estática)
+3. Mudanças breaking requerem discussão prévia em issue
+4. Novos recursos devem incluir testes e documentação
+
+## Licença
+
+Ao contribuir, você concorda que suas contribuições serão licenciadas sob a licença MIT do projeto.
+
+## Dúvidas?
+
+Abra uma issue com o label `question` ou entre em contato via Discussions do GitHub.
+
+---
+
+*Feito com ☕ pela comunidade PHP brasileira*

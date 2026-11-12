@@ -1,0 +1,45 @@
+{
+    "name": "jonatasfenske/datalayer",
+    "description": "Abstração de persistência PHP 8.5 com QueryBuilder fluente, Soft Deletes, Relacionamentos, Casting, Transações e Eventos de lifecycle",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["php85", "datalayer", "pdo", "crud", "query-builder", "orm", "database", "soft-deletes", "relationships"],
+    "homepage": "https://github.com/jonatasfenske/datalayer",
+    "authors": [
+        {
+            "name": "Robson V. Leite",
+            "email": "cursos@upinside.com.br",
+            "role": "Original Author"
+        },
+        {
+            "name": "Jonatas Fenske",
+            "role": "PHP 8.5 Modernization"
+        }
+    ],
+    "require": {
+        "php": ">=8.5",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JonatasFenske\\DataLayer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JonatasFenske\\DataLayer\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse src tests --level=max"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
