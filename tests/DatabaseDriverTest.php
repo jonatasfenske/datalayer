@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JonatasFenske\DataLayer\Tests;
 
 use JonatasFenske\DataLayer\DatabaseDriver;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -79,11 +80,22 @@ final class DatabaseDriverTest extends TestCase
         DatabaseDriver::from('oracle');
     }
 
-    public function testTryFromReturnsNullForInvalidValue(): void
+    #[DataProvider('invalidDriverProvider')]
+    public function testTryFromReturnsNullForInvalidValue(string $value): void
     {
-        $driver = DatabaseDriver::tryFrom('oracle');
+        $driver = DatabaseDriver::tryFrom($value);
 
         self::assertNull($driver);
+    }
+
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function invalidDriverProvider(): array
+    {
+        return [
+            'unknown driver' => ['oracle'],
+        ];
     }
 
     public function testTryFromReturnsEnumForValidValue(): void

@@ -100,7 +100,7 @@ trait SoftDeletes
      */
     public function isTrashed(): bool
     {
-        return !empty($this->data?->{$this->deletedAtColumn});
+        return !empty($this->data->{$this->deletedAtColumn});
     }
 
     /**

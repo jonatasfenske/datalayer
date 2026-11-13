@@ -16,9 +16,16 @@
             "role": "PHP 8.5 Modernization"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jonatasfenske/paginator"
+        }
+    ],
     "require": {
         "php": ">=8.5",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "jonatasfenske/paginator": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^12.0",
@@ -36,7 +43,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "analyse": "phpstan analyse src tests --level=max"
+        "analyse": "phpstan analyse --no-progress"
     },
     "config": {
         "sort-packages": true

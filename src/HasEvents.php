@@ -16,11 +16,11 @@ trait HasEvents
  /**
  * Registra hook para evento beforeSave
  *
- * @param callable(static): bool|void $callback Retorne false para cancelar a operação
+ * @param callable(static): (bool|void) $callback Retorne false para cancelar a operação
  */
  public static function beforeSave(callable $callback): void
  {
- static::registerEvent('beforeSave', $callback);
+ self::registerEvent('beforeSave', $callback);
  }
 
  /**
@@ -30,17 +30,17 @@ trait HasEvents
  */
  public static function afterSave(callable $callback): void
  {
- static::registerEvent('afterSave', $callback);
+ self::registerEvent('afterSave', $callback);
  }
 
  /**
  * Registra hook para evento beforeDelete
  *
- * @param callable(static): bool|void $callback Retorne false para cancelar a operação
+ * @param callable(static): (bool|void) $callback Retorne false para cancelar a operação
  */
  public static function beforeDelete(callable $callback): void
  {
- static::registerEvent('beforeDelete', $callback);
+ self::registerEvent('beforeDelete', $callback);
  }
 
  /**
@@ -50,17 +50,17 @@ trait HasEvents
  */
  public static function afterDelete(callable $callback): void
  {
- static::registerEvent('afterDelete', $callback);
+ self::registerEvent('afterDelete', $callback);
  }
 
  /**
  * Registra hook para evento beforeCreate
  *
- * @param callable(static): bool|void $callback
+ * @param callable(static): (bool|void) $callback
  */
  public static function beforeCreate(callable $callback): void
  {
- static::registerEvent('beforeCreate', $callback);
+ self::registerEvent('beforeCreate', $callback);
  }
 
  /**
@@ -70,17 +70,17 @@ trait HasEvents
  */
  public static function afterCreate(callable $callback): void
  {
- static::registerEvent('afterCreate', $callback);
+ self::registerEvent('afterCreate', $callback);
  }
 
  /**
  * Registra hook para evento beforeUpdate
  *
- * @param callable(static): bool|void $callback
+ * @param callable(static): (bool|void) $callback
  */
  public static function beforeUpdate(callable $callback): void
  {
- static::registerEvent('beforeUpdate', $callback);
+ self::registerEvent('beforeUpdate', $callback);
  }
 
  /**
@@ -90,7 +90,7 @@ trait HasEvents
  */
  public static function afterUpdate(callable $callback): void
  {
- static::registerEvent('afterUpdate', $callback);
+ self::registerEvent('afterUpdate', $callback);
  }
 
  /**

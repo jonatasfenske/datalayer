@@ -11,7 +11,7 @@ use PDOException;
  * QueryBuilder fluente para construção dinâmica de consultas SQL
  * PHP 8.5: tipagem estrita, named arguments, union types
  */
-class QueryBuilder
+final class QueryBuilder
 {
     private string $table;
     private ?DatabaseConfig $database;
@@ -478,7 +478,7 @@ class QueryBuilder
         $result = $this->first();
         $this->columns = $originalColumns;
 
-        return (int)($result?->aggregate ?? 0);
+        return (int)($result->aggregate ?? 0);
     }
 
     /**

@@ -89,7 +89,7 @@ abstract class DataLayer
 
     public function __isset(string $name): bool
     {
-        return isset($this->data?->$name);
+        return isset($this->data->$name);
     }
 
     public function __get(string $name): mixed
@@ -97,20 +97,20 @@ abstract class DataLayer
         // Verifica accessor customizado (getNomeAttribute)
         $accessor = 'get' . str_replace('_', '', ucwords($name, '_')) . 'Attribute';
         if (method_exists($this, $accessor)) {
-            return $this->$accessor($this->data?->$name ?? null);
+            return $this->$accessor($this->data->$name ?? null);
         }
 
         // Verifica relacionamento carregado
         foreach ($this->relations as $key => $value) {
             if (str_contains($key, ":{$name}") || str_ends_with($key, ":{$name}")) {
-                return is_array($value) && count($value) === 1 && !str_contains($key, 'hasMany') && !str_contains($key, 'belongsToMany')
+                return count($value) === 1 && !str_contains($key, 'hasMany') && !str_contains($key, 'belongsToMany')
                     ? $value[0]
                     : $value;
             }
         }
 
         // Aplica cast se definido
-        $raw = $this->data?->$name ?? null;
+        $raw = $this->data->$name ?? null;
         return $this->castAttribute($name, $raw);
     }
 
@@ -328,10 +328,7 @@ abstract class DataLayer
             }
 
             if ($all) {
-                $results = $stmt->fetchAll(PDO::FETCH_CLASS, static::class);
-                if ($results === false) {
-                    return null;
-                }
+                $results = $stmt->fetchAll(PDO::FETCH_CLASS, static::class) ?: [];
                 // Aplica casts em cada resultado
                 foreach ($results as $result) {
                     $result->data = $this->applyCasts($result->data);
@@ -403,7 +400,7 @@ abstract class DataLayer
         $primary = $this->primary;
         $id = null;
         $save = null;
-        $isUpdate = !empty($this->data?->$primary);
+        $isUpdate = !empty($this->data->$primary);
 
         try {
             // Dispara evento beforeSave
