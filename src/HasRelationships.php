@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CoffeeCode\DataLayer;
+namespace JonatasFenske\DataLayer;
 
 use PDO;
 
@@ -205,7 +205,7 @@ trait HasRelationships
 
         foreach ($models as $model) {
             $fkValue = $model->data?->$foreignKey;
-            $cacheKey = "belongsTo:{$related::class}:{$foreignKey}";
+            $cacheKey = 'belongsTo:' . $related::class . ":{$foreignKey}";
             $model->relations[$cacheKey] = [($fkValue !== null && isset($indexed[$fkValue])) ? $indexed[$fkValue] : null];
         }
     }
@@ -235,7 +235,7 @@ trait HasRelationships
 
         foreach ($models as $model) {
             $localValue = $model->data?->$localKey;
-            $cacheKey = "hasMany:{$related::class}:{$foreignKey}";
+            $cacheKey = 'hasMany:' . $related::class . ":{$foreignKey}";
             $model->relations[$cacheKey] = ($localValue !== null && isset($grouped[$localValue])) ? $grouped[$localValue] : [];
         }
     }

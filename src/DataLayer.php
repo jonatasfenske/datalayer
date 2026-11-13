@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CoffeeCode\DataLayer;
+namespace JonatasFenske\DataLayer;
 
 use PDO;
 use PDOException;
@@ -368,7 +368,7 @@ abstract class DataLayer
      * @param int $limit Registros por página
      * @param int $range Páginas adjacentes
      * @param string|null $hash Fragmento de URL
-     * @return array{results: array<static>|null, paginator: \CoffeeCode\Paginator\Paginator}
+     * @return array{results: array<static>|null, paginator: \JonatasFenske\Paginator\Paginator}
      */
     public function paginate(int $page = 1, int $limit = 10, int $range = 3, ?string $hash = null): array
     {
@@ -380,7 +380,7 @@ abstract class DataLayer
             ->offset($offset)
             ->fetch(all: true);
 
-        $paginator = new \CoffeeCode\Paginator\Paginator();
+        $paginator = new \JonatasFenske\Paginator\Paginator();
         $paginator->pager(
             rows: $total,
             limit: $limit,
@@ -463,7 +463,7 @@ abstract class DataLayer
 
         $result = $this->softDeletesEnabled
             ? $this->softDelete()
-            : parent::destroy();
+            : $this->forceDelete();
 
         if ($result) {
             $this->fireEvent('afterDelete');

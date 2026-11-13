@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CoffeeCode\DataLayer;
+namespace JonatasFenske\DataLayer;
 
 /**
  * Trait para eventos/hooks de lifecycle do model

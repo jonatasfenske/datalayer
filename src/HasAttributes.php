@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CoffeeCode\DataLayer;
+namespace JonatasFenske\DataLayer;
 
 use DateTimeImmutable;
 use JsonException;

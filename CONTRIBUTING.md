@@ -1,4 +1,4 @@
-# Contribuindo com o CoffeeCode 8.5
+# Contribuindo com o DataLayer
 
 Obrigado pelo interesse em contribuir! Este documento descreve as diretrizes para enviar contribuições ao projeto.
 
@@ -6,7 +6,7 @@ Obrigado pelo interesse em contribuir! Este documento descreve as diretrizes par
 
 ### Reportando Bugs
 
-1. Verifique se o bug já foi reportado nas [Issues](https://github.com/yourusername/coffeecode/issues)
+1. Verifique se o bug já foi reportado nas [Issues](https://github.com/jonatasfenske/datalayer/issues)
 2. Se não encontrado, abra uma nova issue com:
    - Descrição clara do problema
    - Passos para reproduzir
@@ -67,7 +67,7 @@ Obrigado pelo interesse em contribuir! Este documento descreve as diretrizes par
 | Propriedades | camelCase | `$cachePath`, `$allowedMimes` |
 | Constantes | UPPER_SNAKE | `METHOD_NOT_ALLOWED` |
 | Enums | PascalCase | `HttpMethod`, `MimeType` |
-| Namespaces | PascalCase | `CoffeeCode\DataLayer` |
+| Namespaces | PascalCase | `JonatasFenske\DataLayer` |
 | Arquivos | PascalCase (mesmo nome da classe) | `QueryBuilder.php` |
 | Traits | PascalCase com prefixo Has/Use | `HasAttributes`, `SoftDeletes` |
 
@@ -90,19 +90,9 @@ Obrigado pelo interesse em contribuir! Este documento descreve as diretrizes par
 ## Estrutura do Projeto
 
 ```
-src/
-├── DataLayer/      # Persistência e QueryBuilder
-├── Router/         # Roteamento MVC + Middleware/
-├── Uploader/       # Upload seguro de arquivos
-├── Cropper/        # Processamento de imagens
-├── Optimizer/      # SEO, Schema.org, Sitemap
-├── Paginator/      # Paginação offset e cursor
-├── Validator/      # Validação declarativa
-├── ImageEngine.php # Enum GD/Imagick
-└── ImageProcessor.php # Trait compartilhado
-
-tests/              # Espelha estrutura de src/
-docs/               # Documentação numerada (01-10)
+src/       # Código-fonte (JonatasFenske\DataLayer)
+tests/     # Testes espelhando a estrutura de src/
+examples/  # Exemplos executáveis
 ```
 
 ## Processo de Review
